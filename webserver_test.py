@@ -14,6 +14,20 @@ session = DBSession()
 class WebServerHandler(BaseHTTPRequestHandler):
 
     def do_GET(self):
+        if self.path.endswith("/catalogs/additem"):
+            self.send_response(200)
+            self.send_header('Content-type', 'text/html')
+            self.end_headers()
+            message = ""
+            message += "<html><body>"
+            message += "<h1> Add Item To A Catalog</h1>"
+            message += '''<form method='POST' enctype='multipart/form-data' action='/catalogs/additem'><h2>'''
+            message += '''<input name= 'newItemName' type='text' placeholder = 'New Item Name' >'''
+            message += '''<input type= 'submit' value = 'Create'>'''
+            message += "</body></html>"
+            self.wfile.write(message)
+            return
+
         if self.path.endswith("/delete"):
                 catalogIDPath = self.path.split("/")[2]
 
