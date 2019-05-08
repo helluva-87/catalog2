@@ -4,16 +4,15 @@ from sqlalchemy.pool import StaticPool
 from sqlalchemy import create_engine
 from flask import Flask, render_template, url_for, request, redirect, flash, jsonify
 from flask import session as login_session
-import random, string
+from flask import make_response
+from oauth2client.client import flow_from_clientsecrets
+from oauth2client.client import FlowExchangeError
+import random, stringm httplib2, json, requests
 app = Flask(__name__)
 
 # Imports for GConnect
-from oauth2client.client import flow_from_clientsecrets
-from oauth2client.client import FlowExchangeError
-import httplib2
-import json
-from flask import make_response
-import requests
+
+
 
 # Declare Client ID by referencing the client_secrets copied from
 # Google developer Console
