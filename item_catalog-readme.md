@@ -19,8 +19,8 @@ Change the directory to the vagrant folder by typing:
       "cd /vagrant"
 Once you are in the /vagrant folder of the virtual environment, you can type the command:
       "python project.py"
-This will launch the application and there will be a notification that the application is "Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)". You can then open a web browser and type in: "http://localhost:5000". This will take you to the homepage of the web application where you will be able to view the item catalogs and then be able to click on a particular catalog to view items for that catalog.
+This will launch the application and there will be a notification that the application is "Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)". You can then open a web browser and type in: "http://localhost:5000". This will take you to the homepage of the web application where you will be able to view the item catalogs and then be able to click on a particular catalog to view items for that catalog. Whenever you would like to exit the terminal program, simply press "CTRL-C" to exit!
 If you click the links to create, edit or delete a catalog or item, you will be redirected to the login page where you will be able to sign in to the web application by using your google account.
 ### License:
-Logs_analysis is a public domain work, dedicated using CC0 1.0. Feel free
+project.py (item_catalog) is a public domain work, dedicated using CC0 1.0. Feel free
 to do whatever you want with it.
