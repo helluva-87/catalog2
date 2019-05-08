@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel=stylesheet type=text/css href = "{{ url_for('static', filename='styles.css')}}" >
+</head>
+
+<body>
+
+<h1><a href="{{url_for('showCatalogs')}}"></h1>
+
+
+<a href='{{url_for('newCatalog', catalog_id = catalog_id) }}'>Create New Catalog</a>
+
+{% for catalog in catalogs %}
+<a href = "{{url_for('CatalogItems', catalog_id = catalog.id)}}">
+<div>
+
+<h2>{{catalog.name}}</h2>
+
+<p> {{"--------------------------------------------"}} </p>
+
+</div>
+
+
+{% endfor %}
+</body>
+
+</html>

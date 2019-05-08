@@ -1,0 +1,35 @@
+<html>
+
+<body>
+
+<!-- INSERT YOUR CODE HERE -->
+<h1> Edit Catalog Item </h1>
+
+<form action='{{url_for('editItem', catalog_id=catalog_id, item_id=item_id, item=editedItem)}}' method = 'POST'>
+
+<p>Name:</p>
+
+<input type='text' size='30' name='name' placeholder = '{{item.name}}'>
+
+<p>Item Description: </p>
+<input type='text' size='30' name='description', placeholder = '{{item.description}}'>
+<br>
+<br>
+<p>Item Price: </p>
+<input type='text' size='30' name='price' placeholder = '{{item.price}}'>
+<br>
+<br>
+<br>
+<p>Item Type: </p>
+<input type='text' size='30' name='type' placeholder = '{{item.type}}'>
+<br>
+<br>
+<input type='submit' value='Edit Item'>
+
+</form>
+
+<a href= '{{url_for('CatalogItems', catalog_id=catalog_id)}}'>Cancel</a>
+
+</body>
+
+</html>
