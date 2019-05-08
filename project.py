@@ -2,16 +2,19 @@ from database_setup import Base, Catalog, Item
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
 from sqlalchemy import create_engine
-from flask import Flask, render_template, url_for, request, redirect, flash, jsonify
+from flask import Flask, render_template, url_for, request, redirect
+from flask import flash, jsonify
 from flask import session as login_session
 from flask import make_response
+# Imports for GConnect
 from oauth2client.client import flow_from_clientsecrets
 from oauth2client.client import FlowExchangeError
-import random, stringm httplib2, json, requests
+import random
+import string
+import httplib2
+import json
+import requests
 app = Flask(__name__)
-
-# Imports for GConnect
-
 
 
 # Declare Client ID by referencing the client_secrets copied from
@@ -21,24 +24,27 @@ CLIENT_ID = json.loads(
 APPLICATION_NAME = "Item Catalog Application"
 
 
-engine = create_engine('sqlite:///catalog_database.db', connect_args={'check_same_thread': False},
+engine = create_engine('sqlite:///catalog_database.db',
+                       connect_args={'check_same_thread': False},
                        poolclass=StaticPool)
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
+
 @app.route('/login')
 def showLogin():
     state = ''.join(random.choice(string.ascii_uppercase + string.digits)
-                for x in xrange(32))
+                    for x in xrange(32))
     login_session['state'] = state
     return render_template('login3.html', STATE=state)
 
-@app.route('/gconnect', methods= ['POST'])
+
+@app.route('/gconnect', methods=['POST'])
 def gconnect():
-# Confirm that the  state token that the client sent to the server matches
-# The  state token sent from the server to the client
+    # Confirm that the  state token that the client sent to the server matches
+    # The  state token sent from the server to the client
     if request.args.get('state') != login_session['state']:
         response = make_response(json.dumps('Invalid state parameter.'), 401)
         response.headers['Content-Type'] = 'application/json'
@@ -88,8 +94,8 @@ def gconnect():
     stored_access_token = login_session.get('access_token')
     stored_gplus_id = login_session.get('gplus_id')
     if stored_access_token is not None and gplus_id == stored_gplus_id:
-        response = make_response(json.dumps('Current user is already connected.'),
-                                 200)
+        response = make_response(json.dumps('Current user is already\
+                                 connected.'), 200)
         response.headers['Content-Type'] = 'application/json'
         return response
 
@@ -114,17 +120,21 @@ def gconnect():
     output += '!</h1>'
     output += '<img src="'
     output += login_session['picture']
-    output += ' " style = "width: 300px; height: 300px;border-radius: 150px;-webkit-border-radius: 150px;-moz-border-radius: 150px;"> '
+    output += " style = width: 300px; height: 300px; border-radius: 150px;"
+    output += "-webkit-border-radius: 150px;"
+    output += "-moz-border-radius: 150px;  > "
     flash("you are now logged in as %s" % login_session['username'])
     print "done!"
     return output
 
+@app.route('/disconnect')
 @app.route('/gdisconnect')
 def gdisconnect():
     access_token = login_session.get('access_token')
     if access_token is None:
         print 'No Access Token available for this session...'
-        response = make_response(json.dumps('Current user not connected.'), 401)
+        response = make_response(json.dumps('Current user not\
+                                 connected.'), 401)
         response.headers['Content-Type'] = 'application/json'
         return response
     print 'In gdisconnect access token is %s', access_token
@@ -145,7 +155,8 @@ def gdisconnect():
         response.headers['Content-Type'] = 'application/json'
         return response
     else:
-        response = make_response(json.dumps('Failed to revoke token for given user.', 400))
+        response = make_response(json.dumps('Failed to revoke token\
+                                 for given user.', 400))
         response.headers['Content-Type'] = 'application/json'
         return response
 
@@ -157,8 +168,6 @@ def itemJSON(catalog_id, item_id):
     return jsonify(item=item.serialize)
 
 # Make JSON API endpoint request
-
-
 @app.route('/catalogs/<int:catalog_id>/json/')
 def catalogJSON(catalog_id):
     catalog = session.query(Catalog).filter_by(id=catalog_id).one()
@@ -200,8 +209,10 @@ def newCatalogItem(catalog_id):
     if 'username' not in login_session:
         return redirect('/login')
     if request.method == 'POST':
-        newItem = Item(name=request.form['name'], description=request.form['description'],
-                       type=request.form['type'], price=request.form['price'], catalog_id=catalog_id)
+        newItem = Item(name=request.form['name'],
+                       description=request.form['description'],
+                       type=request.form['type'], price=request.form['price'],
+                       catalog_id=catalog_id)
         session.add(newItem)
         session.commit()
         flash("new catalog item %s created!" % (newItem.name))
@@ -231,10 +242,12 @@ def editItem(catalog_id, item_id):
         return redirect(url_for('CatalogItems', catalog_id=catalog_id))
     else:
         return render_template(
-            'editcatalogitem.html', catalog_id=catalog_id, item_id=item_id, item=editedItem)
+            'editcatalogitem.html', catalog_id=catalog_id, item_id=item_id,
+            item=editedItem)
 
 
-@app.route('/catalogs/<int:catalog_id>/<int:item_id>/delete/', methods=['GET', 'POST'])
+@app.route('/catalogs/<int:catalog_id>/<int:item_id>/delete/',
+           methods=['GET', 'POST'])
 def deleteItem(catalog_id, item_id):
     if 'username' not in login_session:
         return redirect('/login')
@@ -246,7 +259,8 @@ def deleteItem(catalog_id, item_id):
         return redirect(url_for('CatalogItems', catalog_id=catalog_id))
     else:
         return render_template(
-            'deleteitem.html', catalog_id=catalog_id, item_id=item_id, item=deletedItem)
+            'deleteitem.html', catalog_id=catalog_id, item_id=item_id,
+            item=deletedItem)
 
 
 if __name__ == '__main__':

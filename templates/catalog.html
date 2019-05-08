@@ -1,55 +1,55 @@
 <html>
 
 <head>
-  <link rel=stylesheet type=text/css href = "{{ url_for('static', filename='styles.css')}}" >
+  <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css')}}">
 
 </head>
 
 <body>
 
-<h1>{{catalog.name}}</h1>
+  <h1>{{catalog.name}}</h1>
 
-<div class='topcorner'><a href='{{url_for('showCatalogs')}}'>Back To Catalogs Homepage</a></div>
-<a href='{{url_for('newCatalogItem', catalog_id = catalog.id) }}'>Add Item To Catalog</a>
-</br>
+  <div class='topcorner'><a href='{{url_for('showCatalogs')}}'>Back To Catalogs Homepage</a></div>
+  <a href='{{url_for('newCatalogItem', catalog_id = catalog.id) }}'>Add Item To Catalog</a>
+  </br>
 
-{% with messages = get_flashed_messages() %}
-{% if messages %}
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
 
-<ul>
-{% for message in messages %}
-  <li><strong>{{message}}</strong></li>
+  <ul>
+    {% for message in messages %}
+    <li><strong>{{message}}</strong></li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  {% endwith %}
+
+
+
+  {% for i in items %}
+
+  <div>
+
+    <p>{{i.name}}</p>
+
+    <p>{{i.description}}</p>
+
+    <p> {{i.price}} </p>
+
+    <p> {{i.type}} </p>
+
+
+
+    <a href='{{url_for('editItem', catalog_id = catalog.id, item_id = i.id) }}'>Edit Item</a>
+    </br>
+    <a href='{{url_for('deleteItem', catalog_id = catalog.id, item_id = i.id ) }}'>Delete Item</a>
+
+    <p> {{"--------------------------------------------"}} </p>
+
+  </div>
+
+
   {% endfor %}
-</ul>
-{% endif %}
-{% endwith %}
-
-
-
-{% for i in items %}
-
-<div>
-
-<p>{{i.name}}</p>
-
-<p>{{i.description}}</p>
-
-<p> {{i.price}} </p>
-
-<p> {{i.type}} </p>
-
-
-
-<a href='{{url_for('editItem', catalog_id = catalog.id, item_id = i.id) }}'>Edit Item</a>
-</br>
-<a href = '{{url_for('deleteItem', catalog_id = catalog.id, item_id = i.id ) }}'>Delete Item</a>
-
-<p> {{"--------------------------------------------"}} </p>
-
-</div>
-
-
-{% endfor %}
 </body>
 
 </html>

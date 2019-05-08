@@ -1,16 +1,16 @@
 <html>
 
 <body>
-<h1> Are you sure you want to delete {{item.name}}? </h1>
+  <h1> Are you sure you want to delete {{item.name}}? </h1>
 
-<form action="{{ url_for('deleteItem', catalog_id=item.catalog_id, item_id=item.id)}}" method = 'post'>
+  <form action="{{ url_for('deleteItem', catalog_id=item.catalog_id, item_id=item.id)}}" method='post'>
 
-<input type='submit', value = 'Delete'>
+    <input type='submit' , value='Delete'>
 
 
-</form>
+  </form>
 
-<a href = "{{ url_for('CatalogItems', catalog_id = item.catalog_id)}}"> Cancel </a>
+  <a href="{{ url_for('CatalogItems', catalog_id = item.catalog_id)}}"> Cancel </a>
 </body>
 
 </html>

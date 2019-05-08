@@ -1,34 +1,36 @@
 <html>
+
 <body>
-<h1> New Catalog Item </h1>
+  <h1> New Catalog Item </h1>
 
-<form action="{{url_for('newCatalogItem', catalog_id=catalog_id )}}" method = 'POST'>
+  <form action="{{url_for('newCatalogItem', catalog_id=catalog_id )}}" method='POST'>
 
-<p>Name:</p>
+    <p>Name:</p>
 
-<input type='text' size='30' name='name' placeholder ="New Item Name">
-<br>
-<br>
+    <input type='text' size='30' name='name' placeholder="New Item Name">
+    <br>
+    <br>
 
-<p>Item Description: </p>
-<input type='text' size='30' name='description', placeholder ="New Item Description">
-<br>
-<br>
-<p>Item Price: </p>
-<input type='text' size='30' name='price' placeholder = "New Item Price">
-<br>
-<br>
-<br>
-<p>Item Type: </p>
-<input type='text' size='30' name='type' placeholder = "New Item Type">
-<br>
-<br>
-<br>
-<input type='submit' value='Create New Item'>
+    <p>Item Description: </p>
+    <input type='text' size='30' name='description' , placeholder="New Item Description">
+    <br>
+    <br>
+    <p>Item Price: </p>
+    <input type='text' size='30' name='price' placeholder="New Item Price">
+    <br>
+    <br>
+    <br>
+    <p>Item Type: </p>
+    <input type='text' size='30' name='type' placeholder="New Item Type">
+    <br>
+    <br>
+    <br>
+    <input type='submit' value='Create New Item'>
 
-</form>
+  </form>
 
-<a href= '{{url_for('CatalogItems', catalog_id=catalog_id)}}'>Cancel</a>
+  <a href='{{url_for('CatalogItems', catalog_id=catalog_id)}}'>Cancel</a>
 
 </body>
+
 </html>
