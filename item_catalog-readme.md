@@ -1,24 +1,26 @@
 ### Project Name: project.py
-This project will create and run a web application that will enable viewers to view and item catalog and the items listed in the item catalog. Registered users will be able to create, read, edit and delete different items and catalogs from the web application.
+This project will create and run a web application that will enable viewers to view and item catalog and the items listed in the item catalog. Logged in users will be able to create, read, edit and delete different items and catalogs from the web application. Users will be able to login to the web application by using their google account.
 
 #### Requirements:
-- Python3 Python3 can be downloaded from https://www.python.org/ for installation on whichever
-operating system the user is using.
-- psycopg2 Library may be found at http://initd.org/psycopg/docs/install.html.
-From the command line the user with administration privileges can install
-psycopg2 by running the command:
-    sudo pip install psycopg2
-- PostgreSQL Documentation and Download/Installation instructions can be found at
-https://www.postgresql.org/
+- Python3 Python3 can be downloaded from https://www.python.org/ for installation on whichever operating system the user is using.
+- Vagrant virtual environment, which can be downloaded at: https://www.vagrantup.com/
+- Virtualbox Virtualbox can be downloaded from https://www.virtualbox.org/
+- Clone or download the fullstack-nanodegree-vm from https://github.com/udacity/fullstack-nanodegree-vm
+- Clone or download the application files from the github repository https://github.com/helluva-87/catalog2
+
 ### Using The Program:
-Go to https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip
-to download the needed news database. Unzip the database to the same directory as the logs_analysis2 Python program
-With Python3 and psycopg2 installed, the user will need to be in
-the same directory in which the logs_analysis2.py program is located. When in the
-same directory as the logs_analysis program, run this command:
-  python3 logs_analysis2.py
-The program will execute and there will be output in the terminal that answer
-the three questions posed in the description!!
-### License:three_most_popular()
+After installing Vagrant and Virtualbox, navigate to the folder in which you have
+cloned/downloaded the fullstack-nanodegree-vm files and folders from https://github.com/udacity/fullstack-nanodegree-vm and open the vagrant folder. Using this folder location or path, launch a terminal and type the command:
+      "vagrant up"
+The Vagrant virtual environment will load, and once it is completed loading you will have access to the terminal commands again. When vagrant is done initializing, type the command:
+      "vagrant ssh"
+You will then be connected to the virtual machine and there will be a message that your files are located at the "/vagrant" location.
+Change the directory to the vagrant folder by typing:
+      "cd /vagrant"
+Once you are in the /vagrant folder of the virtual environment, you can type the command:
+      "python project.py"
+This will launch the application and there will be a notification that the application is "Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)". You can then open a web browser and type in: "http://localhost:5000". This will take you to the homepage of the web application where you will be able to view the item catalogs and then be able to click on a particular catalog to view items for that catalog.
+If you click the links to create, edit or delete a catalog or item, you will be redirected to the login page where you will be able to sign in to the web application by using your google account.
+### License:
 Logs_analysis is a public domain work, dedicated using CC0 1.0. Feel free
 to do whatever you want with it.
