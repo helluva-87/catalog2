@@ -1,0 +1,9 @@
+Hello! This web application should be accessible at 54.184.75.80 on ssh port 22 (Amazon Lightsail would not allow custom SSH ports),
+using the username of "grader". The password for the user "grader" is "grader".
+
+So the login from the command line would be:
+
+"ssh -i [location of grader ssh key] grader@54.184.75.80"
+
+Then there should be a prompt for the password of "grader" as an extra security precaution.
+
