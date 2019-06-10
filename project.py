@@ -124,7 +124,7 @@ def gconnect():
     output += "-webkit-border-radius: 150px;"
     output += "-moz-border-radius: 150px;  > "
     flash("you are now logged in as %s" % login_session['username'])
-    print "done!"
+    print ("done!")
     return output
 
 @app.route('/disconnect')
@@ -132,19 +132,19 @@ def gconnect():
 def gdisconnect():
     access_token = login_session.get('access_token')
     if access_token is None:
-        print 'No Access Token available for this session...'
+        print ('No Access Token available for this session...')
         response = make_response(json.dumps('Current user not\
                                  connected.'), 401)
         response.headers['Content-Type'] = 'application/json'
         return response
-    print 'In gdisconnect access token is %s', access_token
-    print 'User name is: '
-    print login_session['username']
+    print ('In gdisconnect access token is %s'), access_token
+    print ('User name is: ')
+    print (login_session['username'])
     url = 'https://accounts.google.com/o/oauth2/revoke?token=%s' % login_session['access_token']
     h = httplib2.Http()
     result = h.request(url, 'GET')[0]
-    print 'result is '
-    print result
+    print ('result is ')
+    print (result)
     if result['status'] == '200':
         del login_session['access_token']
         del login_session['gplus_id']
