@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 from database_setup import Base, Catalog, Item
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
