@@ -24,7 +24,7 @@ CLIENT_ID = json.loads(
 APPLICATION_NAME = "Item Catalog Application"
 
 
-engine = create_engine('sqlite:///catalog_database.db',
+engine = create_engine('sqlite:////var/www/catalog2/catalog2/catalog_database.db',
                        connect_args={'check_same_thread': False},
                        poolclass=StaticPool)
 Base.metadata.bind = engine
