@@ -21,7 +21,7 @@ app = Flask(__name__)
 # Declare Client ID by referencing the client_secrets copied from
 # Google developer Console
 CLIENT_ID = json.loads(
-    open('client_secrets.json', 'r').read())['web']['client_id']
+    open('/var/www/catalog2/catalog2/client_secrets.json', 'r').read())['web']['client_id']
 APPLICATION_NAME = "Item Catalog Application"
 
 
